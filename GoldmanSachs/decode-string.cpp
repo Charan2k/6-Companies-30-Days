@@ -1,32 +1,33 @@
 #include<iostream>
 using namespace std;
 
-string decodeUtil(string encoded, int i){
+string decodeUtil(string encoded, int& idx){
     string ans;
-    while(i<encoded.length() && encoded[i]!=']'){
-        if(isdigit(encoded[i])){
+    while(idx<encoded.length() && encoded[idx]!=']'){
+        if(isdigit(encoded[idx])){
             int k=0;
-            while(i<encoded.length() && isdigit(encoded[i])){
-                k = k*10 + encoded[i]-'0';
-                i++;
+            while(isdigit(encoded[idx]) && idx<encoded.length()){
+                k = k*10 + (encoded[idx]-'0');
+                idx++;
             }
-            i++;
-            string intr = decodeUtil(encoded,i);
+            idx++;
+            string intr = decodeUtil(encoded, idx);
             while(k--){
                 ans += intr;
             }
-            i++;
+            idx++;
         }
         else{
-            ans += encoded[i]; 
-            i++;
+            ans += encoded[idx];
+            idx++;
         }
     }
     return ans;
 }
 
 string decode(string encoded){
-    return decodeUtil(encoded, 0);
+    int i=0;
+    return decodeUtil(encoded, i);
 }
 
 int main(){
