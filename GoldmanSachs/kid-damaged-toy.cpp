@@ -2,11 +2,6 @@
 using namespace std;
 
 int getKidNumber(int n, int m, int k){
-    // if((m+k-1)%n == 0){
-    //     return n;
-    // }else{
-    //     return (m+k-1)%n;
-    // }
     int ans = (m+k-1)%n;
     if(ans){
         return ans;
