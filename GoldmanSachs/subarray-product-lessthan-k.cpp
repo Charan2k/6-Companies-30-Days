@@ -2,16 +2,19 @@
 using namespace std;
 
 int countSubArrayProductLessThanK(int arr[], int n, int k){
-    int x = 1;
+    int product = 1;
     int count = 0;
-    for(int i=0; i<n; i++){
-        if(arr[i]<k){
-            count++;
+    int l=0, r=0;
+    while(r<n){
+        product = product*arr[r];
+        while(product>=k){
+            product = product/arr[l];
+            l++;
         }
-        if(x*arr[i]<k){
-            x = x*arr[i];
-            count+=2;
+        if(product>0){
+            count += (r-l) + 1;
         }
+        r++;
     }
     return count;
 }
