@@ -1,17 +1,20 @@
 #include<iostream>
 #include<vector>
+#include<set>
 using namespace std;
 
 vector<int> maxOfSubArrays(int arr[], int n, int k){
     vector<int> ans;
-    for(int i=0; i<n-k+1; i++){
-        int max = 0;
-        for(int j=i; j<i+k; j++){
-            if(arr[j]>max){
-                max = arr[j];
-            }
-        }
-        ans.push_back(max);
+    multiset<int, greater<int> > window;
+    for(int i=0; i<k; i++){
+        window.insert(arr[i]);
+    }
+    ans.push_back(*window.begin());
+    for(int i=k; i<n; i++){
+        window.insert(arr[i]);
+        auto it = window.find(arr[i-k]);
+        window.erase(it);
+        ans.push_back(*window.begin());
     }
     return ans;
 }
