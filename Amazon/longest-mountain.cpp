@@ -29,7 +29,7 @@ int sizeOfLongestMountain(vector<int>& arr) {
             
         }
         i++;
-    }
+    } 
     return mount;
 }
 
