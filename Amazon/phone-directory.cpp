@@ -1,19 +1,11 @@
-// { Driver Code Starts
-// Initial Template for C++
-
 #include<iostream>
 #include<vector>
 using namespace std;
 
- // } Driver Code Ends
-// User function Template for C++
-
 class Solution{
 public:
     vector<vector<string>> displayContacts(int n, string contact[], string s)
-    {
-        // code here
-        
+    {        
         vector<vector<string>> ans;
         bool check[n];
         for(int i=0; i<n; i++){
