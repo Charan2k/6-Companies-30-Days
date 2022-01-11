@@ -31,11 +31,30 @@ vector<string> generateBinaryStringsQueue(int n){
     return ans;
 }
 
+void recurse(int n, string& s){
+    if(n==0){
+        return;
+    }
+    recurse(n/2,s);
+    s += to_string((n%2));
+}
+
+vector<string> generate(int n){
+    vector<string> ans;
+    for(int i=1; i<=n; i++){
+        string s= "";
+        recurse(i,s);
+        ans.push_back(s);
+    }
+    return ans;
+}
+
 int main(){
     int n;
     cin >> n;
     // vector<string> ans = generateBinaryStrings(n);
-    vector<string> ans = generateBinaryStringsQueue(n);
+    // vector<string> ans = generateBinaryStringsQueue(n);
+    vector<string> ans = generate(n);
     for(auto i: ans){
         cout << i << " ";
     }
